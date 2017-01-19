@@ -1,12 +1,29 @@
 *.class
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
+.gradle
+.idea
+.idea_modules/
+.eclipse
+.settings/
+.history
+.classpath
+.project
+
+*.bak
+test-result
+server.pid
+*.iml
+*.eml
+.cache
 
 # Package Files #
 *.jar
 *.war
 *.ear
+
+tmp/
+build/
+target/
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
