@@ -20,7 +20,6 @@ import org.junit.Test;
 import org.keycloak.Config.Scope;
 import org.keycloak.common.util.MultivaluedHashMap;
 import org.keycloak.component.ComponentModel;
-import org.keycloak.credential.CredentialInput;
 import org.keycloak.credential.CredentialModel;
 import org.keycloak.models.*;
 import org.mockito.Mock;
