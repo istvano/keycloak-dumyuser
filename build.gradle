@@ -20,6 +20,10 @@ ext {
     keycloakVersion = '2.5.0.Final'
 }
 
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.3'
+}
+
 sourceSets {
     integrationTest {
         java.srcDir file('src/integration-test/java')
