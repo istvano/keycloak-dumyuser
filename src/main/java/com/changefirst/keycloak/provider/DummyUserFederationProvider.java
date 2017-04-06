@@ -54,15 +54,19 @@ public class DummyUserFederationProvider implements UserStorageProvider, UserLoo
    // UserLookupProvider methods
 
     public UserModel createAdapter(RealmModel realm, String username) {
-        LOG.infof("Creating user adapter for: %s", username);
-        UserModel userModel = session.userLocalStorage().addUser(realm, username);
 
-        userModel.setFederationLink(model.getId());
-        userModel.setEnabled(true);
-        userModel.setEmail(username);
-        userModel.setEmailVerified(true);
-        userModel.setFirstName("Dummy");
-        userModel.setLastName("Migration");
+        UserModel userModel = session.userLocalStorage().getUserByUsername(username, realm);
+        if (userModel == null) {
+            LOG.infof("Creating user adapter for: %s", username);
+            userModel = session.userLocalStorage().addUser(realm, username);
+
+            userModel.setFederationLink(model.getId());
+            userModel.setEnabled(true);
+            userModel.setEmail(username);
+            userModel.setEmailVerified(true);
+            userModel.setFirstName("Dummy");
+            userModel.setLastName("Migration");
+        }
 
         return userModel;
     }
@@ -107,7 +111,7 @@ public class DummyUserFederationProvider implements UserStorageProvider, UserLoo
 
         String migrated = user.getFirstAttribute("migrated");
 
-        boolean valid = true;
+        boolean valid = false;
 
         if ( migrated == null || Boolean.valueOf(migrated).booleanValue() != true ) {
 
@@ -144,6 +148,8 @@ public class DummyUserFederationProvider implements UserStorageProvider, UserLoo
                 LOG.warnf("Not possible to process password for user %s", user.getId());
             }
 
+        } else {
+            valid = true;
         }
 
 
